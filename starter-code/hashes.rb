@@ -1,21 +1,41 @@
 ##############################
 #### MANIPULATING HASHES ####
 ##############################
-#character_count
-  # takes in a string
-  # counts how many times each character appears in a string
-  # ignores case
-  # returns the hash
+def character_count(string)
+  charCount = Hash.new
+  charCount.default = 0
+  xstring = string.downcase
+  for i in 0...xstring.length
+    charCount[xstring[i]] += 1
+  end
+  return charCount
+end
 
 ## STRETCH ##
-#word_count
-  # takes in a string
-  # counts how many times a word appears in a string
-  # ignores case
-  # ignores characters that are not in the sequence a-z
-  # returns a hash with all the words and their counts
+def word_count(string)
+  words = string.split
+  wordCount = Hash.new
+  wordCount.default = 0
+  for i in 0...words.length
+    words[i] = words[i].downcase.gsub(/[^a-z]/, "")
+    wordCount[words[i]] += 1
+  end
+  return wordCount
+end
+
 
 ## STRETCH ##
-#most_frequent_word
-  # takes in a string
-  # finds the word in a string that appears with the most frequency
+def most_frequent_word(string)
+  words = string.split
+  wordCount = Hash.new
+  wordCount.default = 0
+  wordPlurality = ""
+  for i in 0...words.length
+    words[i] = words[i].downcase.gsub(/[^a-z]/, "")
+    wordCount[words[i]] += 1
+    if wordCount[words[i]] > wordCount[wordPlurality]
+      wordPlurality = words[i]
+    end
+  end
+  return wordPlurality
+end
